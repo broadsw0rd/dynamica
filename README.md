@@ -9,7 +9,7 @@
 ## Table of Contents
 
 - [Features](#features)
-- [Install & Usage](install--usage)
+- [Install & Usage](#install--usage)
 - [Examples](#examples)
 - [API](#api)
 - [Development](#development)
