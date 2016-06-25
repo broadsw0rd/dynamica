@@ -5,7 +5,7 @@ export default {
   entry: 'src/dynamica.js',
   dest: 'dist/dynamica.js',
   format: 'umd',
-  plugins: [ 
+  plugins: [
     babel()
   ]
 }
