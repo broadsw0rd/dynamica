@@ -31,6 +31,22 @@
 
 ## API
 
+### `Animation.amimate(time)`
+
+### `Animation#constructor({ duration, handler, easing })`
+
+### `Animation#start()`
+
+### `Animation#complete()`
+
+### `Animation#cancel()`
+
+### `Animation#queue(animation)`
+
+### `Animation#dequeue(animation)`
+
+### `Animation#started()`
+
 ## Development
 
 Command | Description
