@@ -1,6 +1,6 @@
 {
   "ignore": [
-    "**/dist/**",
+    "**/dist/**"
   ],
   "critics": {
     "lint": {
