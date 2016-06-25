@@ -10,24 +10,6 @@
     }
   };
 
-  var createClass = function () {
-    function defineProperties(target, props) {
-      for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-      }
-    }
-
-    return function (Constructor, protoProps, staticProps) {
-      if (protoProps) defineProperties(Constructor.prototype, protoProps);
-      if (staticProps) defineProperties(Constructor, staticProps);
-      return Constructor;
-    };
-  }();
-
   function noop() {}
 
   function id(value) {
@@ -44,28 +26,23 @@
   }
 
   var Animation = function () {
-    createClass(Animation, null, [{
-      key: "add",
-      value: function add(animation) {
-        Animation.instances.push(animation);
+    Animation.add = function add(animation) {
+      Animation.instances.push(animation);
+    };
+
+    Animation.remove = function remove(animation) {
+      var idx = indexOf(Animation.instances, animation);
+      if (idx !== -1) {
+        Animation.instances.splice(idx, 1);
       }
-    }, {
-      key: "remove",
-      value: function remove(animation) {
-        var idx = indexOf(Animation.instances, animation);
-        if (idx !== -1) {
-          Animation.instances.splice(idx, 1);
-        }
+    };
+
+    Animation.animate = function animate(time) {
+      for (var i = 0, animation; i < Animation.instances.length; i++) {
+        animation = Animation.instances[i];
+        animation.animate(time);
       }
-    }, {
-      key: "animate",
-      value: function animate(time) {
-        for (var i = 0, animation; i < Animation.instances.length; i++) {
-          animation = Animation.instances[i];
-          animation.animate(time);
-        }
-      }
-    }]);
+    };
 
     function Animation(_ref) {
       var duration = _ref.duration;
@@ -80,59 +57,51 @@
       this.next = [];
     }
 
-    createClass(Animation, [{
-      key: "start",
-      value: function start() {
-        Animation.add(this);
-        this._started = true;
+    Animation.prototype.start = function start() {
+      Animation.add(this);
+      this._started = true;
+    };
+
+    Animation.prototype.animate = function animate(time) {
+      this.startTime = this.startTime || time;
+      time = (time - this.startTime) / this.duration;
+      if (time < 1) {
+        this.handler(this.ease(time));
+      } else {
+        this.complete();
       }
-    }, {
-      key: "animate",
-      value: function animate(time) {
-        this.startTime = this.startTime || time;
-        time = (time - this.startTime) / this.duration;
-        if (time < 1) {
-          this.handler(this.ease(time));
-        } else {
-          this.complete();
-        }
+    };
+
+    Animation.prototype.complete = function complete() {
+      this.cancel();
+      this.handler(1);
+      for (var i = 0, next; i < this.next.length; i++) {
+        next = this.next[i];
+        next.start();
       }
-    }, {
-      key: "complete",
-      value: function complete() {
-        this.cancel();
-        this.handler(1);
-        for (var i = 0, next; i < this.next.length; i++) {
-          next = this.next[i];
-          next.start();
-        }
+    };
+
+    Animation.prototype.cancel = function cancel() {
+      this.startTime = 0;
+      Animation.remove(this);
+      this._started = false;
+    };
+
+    Animation.prototype.queue = function queue(animation) {
+      this.next.push(animation);
+    };
+
+    Animation.prototype.dequeue = function dequeue(animation) {
+      var idx = indexOf(this.next, animation);
+      if (idx !== -1) {
+        this.next.splice(idx, 1);
       }
-    }, {
-      key: "cancel",
-      value: function cancel() {
-        this.startTime = 0;
-        Animation.remove(this);
-        this._started = false;
-      }
-    }, {
-      key: "queue",
-      value: function queue(animation) {
-        this.next.push(animation);
-      }
-    }, {
-      key: "dequeue",
-      value: function dequeue(animation) {
-        var idx = indexOf(this.next, animation);
-        if (idx !== -1) {
-          this.next.splice(idx, 1);
-        }
-      }
-    }, {
-      key: "started",
-      value: function started() {
-        return this._started;
-      }
-    }]);
+    };
+
+    Animation.prototype.started = function started() {
+      return this._started;
+    };
+
     return Animation;
   }();
 
