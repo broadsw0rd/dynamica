@@ -63,6 +63,7 @@ animation.start()
 
 ## Examples
 
+- **[All](http://codepen.io/collection/nZOBdk/)**
 - [Basic number animation](http://codepen.io/broadsw0rd/pen/zBNJvo)
 
 ## API
