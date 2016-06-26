@@ -43,17 +43,21 @@ Download [dev](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.js) o
 ## Usage
 
 ```js
+// start the animation digest
 Animation.digest()
 
 var target = document.getElementById('target')
 
+// create animation instance
 var animation = new Animation({
   duration: 10 * 1000,
-  handler: function (t) {
+  handler: function(t) {
+    // animation implementation
     target.textContent = t.toFixed(5)
   }
 })
 
+// start the animation
 animation.start()
 ```
 
