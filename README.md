@@ -18,7 +18,8 @@
 ## Table of Contents
 
 - [Features](#features)
-- [Install & Usage](#install--usage)
+- [Install](#install)
+- [Usage](#usage)
 - [Examples](#examples)
 - [API](#api)
 - [Development](#development)
@@ -31,9 +32,34 @@
 - Well tested
 - Designed with performance in mind and reviewed with [IRHydra](http://mrale.ph/irhydra/2/)
 
-## Install & Usage
+## Install
+
+Download [dev](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.min.js) version and put it in your html
+
+```html
+<script src="vendor/dynamica.min.js"></script>
+```
+
+## Usage
+
+```js
+Animation.digest()
+
+var target = document.getElementById('target')
+
+var animation = new Animation({
+  duration: 10 * 1000,
+  handler: function (t) {
+    target.textContent = t.toFixed(5)
+  }
+})
+
+animation.start()
+```
 
 ## Examples
+
+- [Basic number animation](http://codepen.io/broadsw0rd/pen/zBNJvo)
 
 ## API
 
