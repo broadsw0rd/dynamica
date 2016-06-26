@@ -32,12 +32,13 @@ class Animation {
     }
   }
 
-  constructor ({ duration, handler, easing }) {
+  constructor ({ duration, handler, ease }) {
     this.startTime = 0
     this.duration = duration
     this.handler = handler || noop
-    this.easing = easing || id
+    this.ease = ease || id
     this.next = []
+    this._started = false
   }
 
   start () {

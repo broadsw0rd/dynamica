@@ -47,14 +47,15 @@
     function Animation(_ref) {
       var duration = _ref.duration;
       var handler = _ref.handler;
-      var easing = _ref.easing;
+      var ease = _ref.ease;
       classCallCheck(this, Animation);
 
       this.startTime = 0;
       this.duration = duration;
       this.handler = handler || noop;
-      this.easing = easing || id;
+      this.ease = ease || id;
       this.next = [];
+      this._started = false;
     }
 
     Animation.prototype.start = function start() {
