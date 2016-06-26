@@ -1,5 +1,5 @@
 <h1 align="center">Dynamica</h1>
-<h4 align="center">Cute animations.</h2>
+<h4 align="center">Goddess of animations</h2>
 <p align="center">
   <a href='https://travis-ci.org/broadsw0rd/dynamica'>
     <img src='https://travis-ci.org/broadsw0rd/dynamica.svg?branch=master' alt='Coverage Status' />
@@ -73,7 +73,7 @@ animation.start()
 
 ### `Animation.digest()`
 
-### `Animation.amimate(time)`
+### `Animation.animate(time)`
 
 ### `Animation#constructor({ duration, handler, easing })`
 
