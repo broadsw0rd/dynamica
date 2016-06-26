@@ -13,6 +13,9 @@ function indexOf (array, item) {
   return -1
 }
 
+var currentTime
+var startTime
+
 class Animation {
   static add (animation) {
     Animation.instances.push(animation)
@@ -30,6 +33,14 @@ class Animation {
       animation = Animation.instances[i]
       animation.animate(time)
     }
+  }
+
+  /* istanbul ignore next */
+  static digest (time) {
+    startTime = startTime || Date.now()
+    currentTime = startTime + (time | 0)
+    Animation.animate(currentTime)
+    window.requestAnimationFrame(Animation.digest)
   }
 
   constructor ({ duration, handler, ease }) {

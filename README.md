@@ -37,6 +37,8 @@
 
 ## API
 
+### `Animation.digest()`
+
 ### `Animation.amimate(time)`
 
 ### `Animation#constructor({ duration, handler, easing })`
