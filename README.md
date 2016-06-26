@@ -67,6 +67,7 @@ animation.start()
 - [Basic number animation](http://codepen.io/broadsw0rd/pen/zBNJvo)
 - [Basic motion animation](http://codepen.io/broadsw0rd/pen/qNRMjp)
 - [Custom easing](http://codepen.io/broadsw0rd/pen/LZxJjQ)
+- [Animation queue](http://codepen.io/broadsw0rd/pen/ezgLGB)
 
 ## API
 
