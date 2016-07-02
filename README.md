@@ -28,8 +28,8 @@
 
 - Simple - [103 LOC](https://github.com/broadsw0rd/dynamica/blob/master/src/dynamica.js#L103)
 - Lightweight - [1.47 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
+- Well tested - [100% code coverage](https://coveralls.io/github/broadsw0rd/dynamica?branch=master)
 - Built for any environment - HTML, CSS, Canvas, React, etc...
-- Well tested
 - Designed with performance in mind and reviewed with [IRHydra](http://mrale.ph/irhydra/2/)
 
 ## Install
