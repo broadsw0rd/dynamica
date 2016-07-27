@@ -1,17 +1,17 @@
-import test from 'ava'
-import sinon from 'sinon'
+var test = require('ava')
+var sinon = require('sinon')
 
-import Animation from '../dist/dynamica.js'
+var Animation = require('../dist/dynamica.js')
 
-test.beforeEach(t => {
+test.beforeEach(function (t) {
   Animation.instances = []
 })
 
-test('`Animation` should be defined', t => {
+test('`Animation` should be defined', function (t) {
   t.truthy(Animation)
 })
 
-test('`Animation#constructor() should create new animation instance`', t => {
+test('`Animation#constructor() should create new animation instance`', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -25,7 +25,7 @@ test('`Animation#constructor() should create new animation instance`', t => {
   t.throws(() => Animation({ duration: 1000 }))
 })
 
-test('`Animation#start()` should start the animation', t => {
+test('`Animation#start()` should start the animation', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -35,7 +35,7 @@ test('`Animation#start()` should start the animation', t => {
   t.not(Animation.instances.indexOf(animation), -1)
 })
 
-test('`Animation#cancel()` should stop the animation', t => {
+test('`Animation#cancel()` should stop the animation', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -48,7 +48,7 @@ test('`Animation#cancel()` should stop the animation', t => {
   t.notThrows(() => animation.cancel())
 })
 
-test('`Animation#queue()` should add animation to the queue', t => {
+test('`Animation#queue()` should add animation to the queue', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -61,7 +61,7 @@ test('`Animation#queue()` should add animation to the queue', t => {
   t.not(animation.next.indexOf(next), -1)
 })
 
-test('`Animation#dequeue()` should remove animation from the queue', t => {
+test('`Animation#dequeue()` should remove animation from the queue', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -77,7 +77,7 @@ test('`Animation#dequeue()` should remove animation from the queue', t => {
   t.notThrows(() => animation.dequeue(next))
 })
 
-test('`Animation#started()` should indicate animation status', t => {
+test('`Animation#started()` should indicate animation status', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -89,7 +89,7 @@ test('`Animation#started()` should indicate animation status', t => {
   t.false(animation.started())
 })
 
-test('`Animation#complete()` should immediately complete the animation', t => {
+test('`Animation#complete()` should immediately complete the animation', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -104,7 +104,7 @@ test('`Animation#complete()` should immediately complete the animation', t => {
   t.true(next.started())
 })
 
-test('`Animation.animate()` should animate the animation', t => {
+test('`Animation.animate()` should animate the animation', function (t) {
   var animation = new Animation({
     duration: 1000
   })

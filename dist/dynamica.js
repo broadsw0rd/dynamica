@@ -41,8 +41,9 @@
     };
 
     Animation.animate = function animate(time) {
-      for (var i = 0, animation; i < Animation.instances.length; i++) {
-        animation = Animation.instances[i];
+      var animations = Animation.instances.concat();
+      for (var i = 0, animation; i < animations.length; i++) {
+        animation = animations[i];
         animation.animate(time);
       }
     };
