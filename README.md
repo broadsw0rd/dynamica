@@ -69,6 +69,7 @@ animation.start()
 - [Custom easing](http://codepen.io/broadsw0rd/pen/LZxJjQ)
 - [Animation queue](http://codepen.io/broadsw0rd/pen/ezgLGB)
 - [Parallel animations](http://codepen.io/broadsw0rd/pen/NArpzK)
+- [Countdown](http://codepen.io/broadsw0rd/pen/VjBBkR)
 
 ## API
 
