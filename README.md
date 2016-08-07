@@ -77,9 +77,22 @@ animation.start()
 
 ### `Animation.animate(time)`
 
-### `Animation#constructor({ duration, handler, easing })`
+### `Animation#constructor(options)`
+
+**Options**
+
+Name | Description | Default | Required
+---- | ----------- | ------- | --------
+`duration` | | | +
+`handler` | | `() => {}` | 
+`easing` | | `t => t` | 
+`onstart` | | `() => {}` |
+`oncancel` | | `() => {}` | 
+`oncomplete` | | `() => {}` | 
 
 ### `Animation#start()`
+
+Start the animation. First tick will be on the next animation frame
 
 ### `Animation#complete()`
 
@@ -91,10 +104,12 @@ animation.start()
 
 ### `Animation#started()`
 
+Indicates that animation has started or not
+
 ## Development
 
 Command | Description
---------| -----------
+------- | -----------
 `npm run check` | Check standard code style by [snazzy](https://www.npmjs.com/package/snazzy)
 `npm run test` | Run tests by [ava](https://github.com/sindresorhus/ava) and compute code coverage by [nyc](https://github.com/bcoe/nyc)
 `npm run build` | Wrap source code in [UMD](https://github.com/umdjs/umd) by [rollup](http://rollupjs.org/)
