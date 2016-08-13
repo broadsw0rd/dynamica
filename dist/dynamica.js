@@ -67,6 +67,7 @@
       var handler = _ref.handler;
       var ease = _ref.ease;
       var onstart = _ref.onstart;
+      var oncancel = _ref.oncancel;
 
 
       if (typeof duration !== 'number') {
@@ -74,10 +75,14 @@
       }
 
       this.startTime = 0;
+
       this.duration = duration;
       this.handler = handler || noop;
       this.ease = ease || id;
+
       this.onstart = onstart || noop;
+      this.oncancel = oncancel || noop;
+
       this.next = [];
       this._started = false;
     }
@@ -99,7 +104,7 @@
     };
 
     Animation.prototype.complete = function complete() {
-      this.cancel();
+      this.remove();
       this.handler(1);
       for (var i = 0, next; i < this.next.length; i++) {
         next = this.next[i];
@@ -107,10 +112,15 @@
       }
     };
 
-    Animation.prototype.cancel = function cancel() {
+    Animation.prototype.remove = function remove() {
       this.startTime = 0;
       Animation.remove(this);
       this._started = false;
+    };
+
+    Animation.prototype.cancel = function cancel() {
+      this.remove();
+      this.oncancel && this.oncancel();
     };
 
     Animation.prototype.queue = function queue(animation) {

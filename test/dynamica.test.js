@@ -68,6 +68,18 @@ test('`Animation#cancel()` should stop the animation', function (t) {
   t.notThrows(() => animation.cancel())
 })
 
+test('`Animation#cancel()` should call oncancel callback', function (t) {
+  var animation = new Animation({
+    duration: 1000,
+    oncancel: function () {}
+  })
+
+  var oncancel = sinon.spy(animation, 'oncancel')
+
+  animation.cancel()
+  t.is(oncancel.callCount, 1)
+})
+
 test('`Animation#queue()` should add animation to the queue', function (t) {
   var animation = new Animation({
     duration: 1000

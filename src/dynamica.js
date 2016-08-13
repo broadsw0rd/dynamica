@@ -49,7 +49,8 @@ class Animation {
       duration,
       handler,
       ease,
-      onstart
+      onstart,
+      oncancel
     } = options || {}
 
     if (typeof duration !== 'number') {
@@ -57,10 +58,14 @@ class Animation {
     }
 
     this.startTime = 0
+
     this.duration = duration
     this.handler = handler || noop
     this.ease = ease || id
+
     this.onstart = onstart || noop
+    this.oncancel = oncancel || noop
+
     this.next = []
     this._started = false
   }
@@ -82,7 +87,7 @@ class Animation {
   }
 
   complete () {
-    this.cancel()
+    this.remove()
     this.handler(1)
     for (var i = 0, next; i < this.next.length; i++) {
       next = this.next[i]
@@ -90,10 +95,15 @@ class Animation {
     }
   }
 
-  cancel () {
+  remove () {
     this.startTime = 0
     Animation.remove(this)
     this._started = false
+  }
+
+  cancel () {
+    this.remove()
+    this.oncancel && this.oncancel()
   }
 
   queue (animation) {
