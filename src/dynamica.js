@@ -44,7 +44,13 @@ class Animation {
     window.requestAnimationFrame(Animation.digest)
   }
 
-  constructor ({ duration, handler, ease }) {
+  constructor (options) {
+    var { duration, handler, ease } = options || {}
+
+    if (typeof duration !== 'number') {
+      throw Error('`duration` should be defined, check https://github.com/broadsw0rd/dynamica#api')
+    }
+
     this.startTime = 0
     this.duration = duration
     this.handler = handler || noop

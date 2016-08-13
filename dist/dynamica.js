@@ -58,11 +58,19 @@
       window.requestAnimationFrame(Animation.digest);
     };
 
-    function Animation(_ref) {
+    function Animation(options) {
+      classCallCheck(this, Animation);
+
+      var _ref = options || {};
+
       var duration = _ref.duration;
       var handler = _ref.handler;
       var ease = _ref.ease;
-      classCallCheck(this, Animation);
+
+
+      if (typeof duration !== 'number') {
+        throw Error('`duration` should be defined, check https://github.com/broadsw0rd/dynamica#api');
+      }
 
       this.startTime = 0;
       this.duration = duration;

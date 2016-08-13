@@ -11,7 +11,7 @@ test('`Animation` should be defined', function (t) {
   t.truthy(Animation)
 })
 
-test('`Animation#constructor() should create new animation instance`', function (t) {
+test('`Animation#constructor()` should create new animation instance', function (t) {
   var animation = new Animation({
     duration: 1000
   })
@@ -23,6 +23,14 @@ test('`Animation#constructor() should create new animation instance`', function 
   t.true(animation.ease instanceof Function)
   t.true(animation.next instanceof Array)
   t.throws(() => Animation({ duration: 1000 }))
+})
+
+test('`Animation#constructor()` should throw error if duration not passed', function (t) {
+  function createAnimation () {
+    return new Animation()
+  }
+
+  t.throws(createAnimation)
 })
 
 test('`Animation#start()` should start the animation', function (t) {
