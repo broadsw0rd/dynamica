@@ -50,7 +50,8 @@ class Animation {
       handler,
       ease,
       onstart,
-      oncancel
+      oncancel,
+      oncomplete
     } = options || {}
 
     if (typeof duration !== 'number') {
@@ -65,6 +66,7 @@ class Animation {
 
     this.onstart = onstart || noop
     this.oncancel = oncancel || noop
+    this.oncomplete = oncomplete || noop
 
     this.next = []
     this._started = false
@@ -89,6 +91,7 @@ class Animation {
   complete () {
     this.remove()
     this.handler(1)
+    this.oncomplete && this.oncomplete()
     for (var i = 0, next; i < this.next.length; i++) {
       next = this.next[i]
       next.start()

@@ -136,6 +136,18 @@ test('`Animation#complete()` should immediately complete the animation', functio
   t.true(next.started())
 })
 
+test('`Animation#complete()` should call oncomplete callback', function (t) {
+  var animation = new Animation({
+    duration: 1000,
+    oncomplete: function () {}
+  })
+
+  var oncomplete = sinon.spy(animation, 'oncomplete')
+
+  animation.complete()
+  t.is(oncomplete.callCount, 1)
+})
+
 test('`Animation.animate()` should animate the animation', function (t) {
   var animation = new Animation({
     duration: 1000

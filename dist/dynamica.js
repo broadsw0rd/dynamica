@@ -68,6 +68,7 @@
       var ease = _ref.ease;
       var onstart = _ref.onstart;
       var oncancel = _ref.oncancel;
+      var oncomplete = _ref.oncomplete;
 
 
       if (typeof duration !== 'number') {
@@ -82,6 +83,7 @@
 
       this.onstart = onstart || noop;
       this.oncancel = oncancel || noop;
+      this.oncomplete = oncomplete || noop;
 
       this.next = [];
       this._started = false;
@@ -106,6 +108,7 @@
     Animation.prototype.complete = function complete() {
       this.remove();
       this.handler(1);
+      this.oncomplete && this.oncomplete();
       for (var i = 0, next; i < this.next.length; i++) {
         next = this.next[i];
         next.start();
