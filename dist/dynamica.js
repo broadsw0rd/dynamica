@@ -66,6 +66,7 @@
       var duration = _ref.duration;
       var handler = _ref.handler;
       var ease = _ref.ease;
+      var onstart = _ref.onstart;
 
 
       if (typeof duration !== 'number') {
@@ -76,6 +77,7 @@
       this.duration = duration;
       this.handler = handler || noop;
       this.ease = ease || id;
+      this.onstart = onstart || noop;
       this.next = [];
       this._started = false;
     }
@@ -83,6 +85,7 @@
     Animation.prototype.start = function start() {
       Animation.add(this);
       this._started = true;
+      this.onstart && this.onstart();
     };
 
     Animation.prototype.animate = function animate(time) {

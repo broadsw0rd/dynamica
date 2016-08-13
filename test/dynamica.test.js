@@ -43,6 +43,18 @@ test('`Animation#start()` should start the animation', function (t) {
   t.not(Animation.instances.indexOf(animation), -1)
 })
 
+test('`Animation#start()` should call onstart callback', function (t) {
+  var animation = new Animation({
+    duration: 1000,
+    onstart: function () {}
+  })
+
+  var onstart = sinon.spy(animation, 'onstart')
+
+  animation.start()
+  t.is(onstart.callCount, 1)
+})
+
 test('`Animation#cancel()` should stop the animation', function (t) {
   var animation = new Animation({
     duration: 1000

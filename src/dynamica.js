@@ -45,7 +45,12 @@ class Animation {
   }
 
   constructor (options) {
-    var { duration, handler, ease } = options || {}
+    var {
+      duration,
+      handler,
+      ease,
+      onstart
+    } = options || {}
 
     if (typeof duration !== 'number') {
       throw Error('`duration` should be defined, check https://github.com/broadsw0rd/dynamica#api')
@@ -55,6 +60,7 @@ class Animation {
     this.duration = duration
     this.handler = handler || noop
     this.ease = ease || id
+    this.onstart = onstart || noop
     this.next = []
     this._started = false
   }
@@ -62,6 +68,7 @@ class Animation {
   start () {
     Animation.add(this)
     this._started = true
+    this.onstart && this.onstart()
   }
 
   animate (time) {
