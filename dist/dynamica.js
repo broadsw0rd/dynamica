@@ -25,9 +25,6 @@
     return -1;
   }
 
-  var currentTime;
-  var startTime;
-
   var Animation = function () {
     Animation.add = function add(animation) {
       Animation.instances.push(animation);
@@ -46,16 +43,6 @@
         animation = animations[i];
         animation.animate(time);
       }
-    };
-
-    /* istanbul ignore next */
-
-
-    Animation.digest = function digest(time) {
-      startTime = startTime || Date.now();
-      currentTime = startTime + (time | 0);
-      Animation.animate(currentTime);
-      window.requestAnimationFrame(Animation.digest);
     };
 
     function Animation(options) {

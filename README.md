@@ -26,8 +26,8 @@
 
 ## Features
 
-- Simple - [103 LOC](https://github.com/broadsw0rd/dynamica/blob/master/src/dynamica.js#L103)
-- Lightweight - [1.47 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
+- Simple - [138 LOC](https://github.com/broadsw0rd/dynamica/blob/master/src/dynamica.js#L138)
+- Lightweight - [1.7 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
 - Well tested - [100% code coverage](https://coveralls.io/github/broadsw0rd/dynamica?branch=master)
 - Built for any environment - HTML, CSS, Canvas, React, etc...
 - Designed with performance in mind and reviewed with [IRHydra](http://mrale.ph/irhydra/2/)
@@ -44,7 +44,10 @@ Download [dev](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.js) o
 
 ```js
 // start the animation digest
-Animation.digest()
+requestAnimationFrame(function loop (t) {
+  Animation.animate(t)
+  requestAnimationFrame(loop)
+})
 
 var target = document.getElementById('target')
 
@@ -72,8 +75,6 @@ animation.start()
 - [Countdown](http://codepen.io/broadsw0rd/pen/VjBBkR)
 
 ## API
-
-### `Animation.digest()`
 
 ### `Animation.animate(time)`
 
