@@ -76,34 +76,51 @@ animation.start()
 
 ## API
 
-### `Animation.animate(time)`
+#### `Animation.animate(time)`
 
-### `Animation#constructor(options)`
+Animatie all started animation by single call. This guarantees full animation synchronization. In other words two different animations with same duration and start time will be completed in same time. Recommended to use [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), but you can use `setTimeout`, `setInterval` or even [raf](https://www.npmjs.com/package/raf)
+
+```js
+requestAnimationFrame(function loop (t) {
+  Animation.animate(t)
+  requestAnimationFrame(loop)
+})
+```
+
+#### `Animation#constructor(options)`
 
 **Options**
 
 Name | Description | Default | Required
 ---- | ----------- | ------- | --------
 `duration` | | | +
-`handler` | | `() => {}` | 
+`handler` | | `(t) => {}` | 
 `easing` | | `t => t` | 
 `onstart` | | `() => {}` |
 `oncancel` | | `() => {}` | 
 `oncomplete` | | `() => {}` | 
 
-### `Animation#start()`
+#### `Animation#start()`
 
-Start the animation. First tick will be on the next animation frame
+Start the animation. First tick will be on the next animation frame. Call `onstart` callback
 
-### `Animation#complete()`
+#### `Animation#complete()`
 
-### `Animation#cancel()`
+Immediately complete the animation and starts next animation in the queue. This means that `handler` callback will be called with `t = 1`. Next animations will start on the next animation frame. Call `oncomplete` callback
 
-### `Animation#queue(animation)`
+#### `Animation#cancel()`
 
-### `Animation#dequeue(animation)`
+Immediately cancel animation. Animations in the queue **will not be started**. Call `oncancel` callback
 
-### `Animation#started()`
+#### `Animation#queue(animation)`
+
+Puts animation to the queue. If you put several animation to the queue, all these animation will start in same time after source animation completion. [Animation queue](http://codepen.io/broadsw0rd/pen/ezgLGB) example
+
+#### `Animation#dequeue(animation)`
+
+Remove passed animation from the queue. So you have full control over animations queues
+
+#### `Animation#started()`
 
 Indicates that animation has started or not
 
