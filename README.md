@@ -34,7 +34,7 @@
 
 ## Install
 
-Download [dev](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.min.js) version and put it in your html
+Download [dev](https://rawgit.com/broadsw0rd/dynamica/1.0.0/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/1.0.0/dist/dynamica.min.js) version and put it in your html
 
 ```html
 <script src="vendor/dynamica.min.js"></script>
