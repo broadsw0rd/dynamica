@@ -34,6 +34,13 @@
 
 ## Install
 
+
+```
+npm install --save dynamica
+```
+
+or
+
 Download [dev](https://rawgit.com/broadsw0rd/dynamica/1.0.0/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/1.0.0/dist/dynamica.min.js) version and put it in your html
 
 ```html
