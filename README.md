@@ -29,7 +29,7 @@
 
 ## Features
 
-- Simple - [138 LOC](https://github.com/broadsw0rd/dynamica/blob/master/src/dynamica.js#L138)
+- Simple - [138 LOC](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.js#L138)
 - Lightweight - [1.7 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
 - Well tested - [100% code coverage](https://coveralls.io/github/broadsw0rd/dynamica?branch=master)
 - Built for any environment - HTML, CSS, Canvas, React, etc...
@@ -44,7 +44,7 @@ npm install --save dynamica
 
 or
 
-Download [dev](https://rawgit.com/broadsw0rd/dynamica/1.0.0/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/1.0.0/dist/dynamica.min.js) version and put it in your html
+Download [dev](https://rawgit.com/broadsw0rd/dynamica/1.0.1/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/1.0.1/dist/dynamica.min.js) version and put it in your html
 
 ```html
 <script src="vendor/dynamica.min.js"></script>

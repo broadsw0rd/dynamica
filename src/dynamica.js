@@ -43,13 +43,13 @@ class Animation {
       oncomplete
     } = options || {}
 
-    if (typeof duration !== 'number') {
+    if (isNaN(duration)) {
       throw Error('`duration` should be defined, check https://github.com/broadsw0rd/dynamica#api')
     }
 
     this.startTime = 0
 
-    this.duration = duration
+    this.duration = Number(duration)
     this.handler = handler || noop
     this.ease = ease || id
 
