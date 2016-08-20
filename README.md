@@ -54,7 +54,7 @@ var target = document.getElementById('target')
 // create animation instance
 var animation = new Animation({
   duration: 10 * 1000,
-  handler: function(t) {
+  handler: function (t) {
     // animation implementation
     target.textContent = t.toFixed(5)
   }
@@ -78,7 +78,7 @@ animation.start()
 
 #### `Animation.animate(time)`
 
-Animatie all started animation by single call. This guarantees full animation synchronization. In other words two different animations with same duration and start time will be completed in same time. Recommended to use [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), but you can use `setTimeout`, `setInterval` or even [raf](https://www.npmjs.com/package/raf)
+Animate all started animations by single call. This guarantees full animation synchronization. In other words two different animations with same duration and start time will be completed in same time. Recommended to use [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) or [raf](https://www.npmjs.com/package/raf)
 
 ```js
 requestAnimationFrame(function loop (t) {
@@ -93,12 +93,12 @@ requestAnimationFrame(function loop (t) {
 
 Name | Description | Default | Required
 ---- | ----------- | ------- | --------
-`duration` | | | +
-`handler` | | `(t) => {}` | 
-`easing` | | `t => t` | 
-`onstart` | | `() => {}` |
-`oncancel` | | `() => {}` | 
-`oncomplete` | | `() => {}` | 
+`duration` | Animation duration. If not passed error will thrown | | +
+`handler` | Animation implementation | `(t) => {}` | 
+`easing` | Animation easing. Check [Custom easing](http://codepen.io/broadsw0rd/pen/LZxJjQ) example | `(t) => t` | 
+`onstart` | Called by [`Animation#start()`](#animationstart) | `() => {}` |
+`oncancel` | Called by [`Animation#cancel()`](#animationcancel) | `() => {}` | 
+`oncomplete` | Called by [`Animation#complete()`](#animationcomplete) | `() => {}` | 
 
 #### `Animation#start()`
 
@@ -106,7 +106,7 @@ Start the animation. First tick will be on the next animation frame. Call `onsta
 
 #### `Animation#complete()`
 
-Immediately complete the animation and starts next animation in the queue. This means that `handler` callback will be called with `t = 1`. Next animations will start on the next animation frame. Call `oncomplete` callback
+Immediately complete the animation and starts next animations in the queue. This means that `handler` callback will be called with `t = 1`. Next animations will start on the next animation frame. Call `oncomplete` callback
 
 #### `Animation#cancel()`
 
