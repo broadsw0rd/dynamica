@@ -1,7 +1,7 @@
 {
   "name": "dynamica",
-  "version": "0.0.1",
-  "description": "Cute animations",
+  "version": "1.0.0",
+  "description": "Goddess of animations",
   "keywords": [
     "animation",
     "motion",
@@ -27,7 +27,7 @@
   "files": [
     "dist"
   ],
-  "main": "dist/dynamica.min.js",
+  "main": "dist/dynamica.js",
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-preset-es2015-loose-rollup": "^7.0.0",
