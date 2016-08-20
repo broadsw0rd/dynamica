@@ -1,6 +1,9 @@
 <h1 align="center">Dynamica</h1>
 <h4 align="center">Goddess of animations</h2>
 <p align="center">
+  <a href="https://www.npmjs.com/package/dynamica" target="_blank">
+    <img src="https://img.shields.io/npm/v/dynamica.svg" alt="NPM version" target="_blank"></img>
+  </a>
   <a href='https://travis-ci.org/broadsw0rd/dynamica'>
     <img src='https://travis-ci.org/broadsw0rd/dynamica.svg?branch=master' alt='Coverage Status' />
   </a>
