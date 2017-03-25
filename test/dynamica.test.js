@@ -1,17 +1,22 @@
-var test = require('ava')
+var test = require('tape')
 var sinon = require('sinon')
 
 var Animation = require('../dist/dynamica.js')
 
-test.beforeEach(function (t) {
+function beforeEach () {
   Animation.instances = []
-})
+}
 
 test('`Animation` should be defined', function (t) {
-  t.truthy(Animation)
+  beforeEach()
+  
+  t.ok(Animation)
+  t.end()
 })
 
 test('`Animation#constructor()` should create new animation instance', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -23,17 +28,24 @@ test('`Animation#constructor()` should create new animation instance', function 
   t.true(animation.ease instanceof Function)
   t.true(animation.next instanceof Array)
   t.throws(() => Animation({ duration: 1000 }))
+  t.end()
 })
 
 test('`Animation#constructor()` should throw error if duration not passed', function (t) {
+  beforeEach()
+  
   function createAnimation () {
     return new Animation()
   }
 
   t.throws(createAnimation)
+
+  t.end()
 })
 
 test('`Animation#start()` should start the animation', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -41,9 +53,13 @@ test('`Animation#start()` should start the animation', function (t) {
 
   t.is(Animation.instances.length, 1)
   t.not(Animation.instances.indexOf(animation), -1)
+
+  t.end()
 })
 
 test('`Animation#start()` should call onstart callback', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000,
     onstart: function () {}
@@ -53,9 +69,13 @@ test('`Animation#start()` should call onstart callback', function (t) {
 
   animation.start()
   t.is(onstart.callCount, 1)
+
+  t.end()
 })
 
 test('`Animation#cancel()` should stop the animation', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -65,10 +85,14 @@ test('`Animation#cancel()` should stop the animation', function (t) {
   t.is(Animation.instances.length, 0)
   t.is(Animation.instances.indexOf(animation), -1)
 
-  t.notThrows(() => animation.cancel())
+  t.doesNotThrow(() => animation.cancel())
+
+  t.end()
 })
 
 test('`Animation#cancel()` should call oncancel callback', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000,
     oncancel: function () {}
@@ -78,9 +102,13 @@ test('`Animation#cancel()` should call oncancel callback', function (t) {
 
   animation.cancel()
   t.is(oncancel.callCount, 1)
+
+  t.end()
 })
 
 test('`Animation#queue()` should add animation to the queue', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -91,9 +119,13 @@ test('`Animation#queue()` should add animation to the queue', function (t) {
 
   t.is(animation.next.length, 1)
   t.not(animation.next.indexOf(next), -1)
+
+  t.end()
 })
 
 test('`Animation#dequeue()` should remove animation from the queue', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -106,10 +138,14 @@ test('`Animation#dequeue()` should remove animation from the queue', function (t
   t.is(animation.next.length, 0)
   t.is(animation.next.indexOf(next), -1)
 
-  t.notThrows(() => animation.dequeue(next))
+  t.doesNotThrow(() => animation.dequeue(next))
+
+  t.end()
 })
 
 test('`Animation#started()` should indicate animation status', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -119,9 +155,13 @@ test('`Animation#started()` should indicate animation status', function (t) {
 
   animation.cancel()
   t.false(animation.started())
+
+  t.end()
 })
 
 test('`Animation#complete()` should immediately complete the animation', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -134,9 +174,13 @@ test('`Animation#complete()` should immediately complete the animation', functio
 
   t.true(handler.getCall(0).calledWith(1))
   t.true(next.started())
+
+  t.end()
 })
 
 test('`Animation#complete()` should call oncomplete callback', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000,
     oncomplete: function () {}
@@ -146,9 +190,13 @@ test('`Animation#complete()` should call oncomplete callback', function (t) {
 
   animation.complete()
   t.is(oncomplete.callCount, 1)
+
+  t.end()
 })
 
 test('`Animation.animate()` should animate the animation', function (t) {
+  beforeEach()
+  
   var animation = new Animation({
     duration: 1000
   })
@@ -172,4 +220,6 @@ test('`Animation.animate()` should animate the animation', function (t) {
   Animation.animate(time + 1100)
 
   t.true(handler.getCall(2).calledWith(1))
+
+  t.end()
 })
