@@ -1,7 +1,7 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.Animation = factory());
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Animation = factory());
 }(this, (function () { 'use strict';
 
 var classCallCheck = function (instance, Constructor) {
@@ -48,15 +48,13 @@ var Animation = function () {
   function Animation(options) {
     classCallCheck(this, Animation);
 
-    var _ref = options || {};
-
-    var duration = _ref.duration;
-    var handler = _ref.handler;
-    var ease = _ref.ease;
-    var onstart = _ref.onstart;
-    var oncancel = _ref.oncancel;
-    var oncomplete = _ref.oncomplete;
-
+    var _ref = options || {},
+        duration = _ref.duration,
+        handler = _ref.handler,
+        ease = _ref.ease,
+        onstart = _ref.onstart,
+        oncancel = _ref.oncancel,
+        oncomplete = _ref.oncomplete;
 
     if (isNaN(duration)) {
       throw Error('`duration` should be defined, check https://github.com/broadsw0rd/dynamica#api');
