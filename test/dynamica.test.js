@@ -185,6 +185,24 @@ test('`Animation#complete()` should immediately complete the animation', functio
   t.end()
 })
 
+test('`Animation#complete()` should set startTime of next animations', function (t) {
+  beforeEach()
+
+  var animation = new Animation({
+    duration: 1000
+  })
+  var next = new Animation({
+    duration: 1000
+  })
+  animation.queue(next)
+  animation.start()
+  animation.complete()
+
+  t.is(next.startTime, animation.currentTime)
+
+  t.end()
+})
+
 test('`Animation#complete()` should call oncomplete callback', function (t) {
   beforeEach()
 

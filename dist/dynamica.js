@@ -61,6 +61,7 @@ var Animation = function () {
     }
 
     this.startTime = 0;
+    this.currentTime = 0;
 
     this.duration = Number(duration);
     this.handler = handler || noop;
@@ -82,6 +83,7 @@ var Animation = function () {
 
   Animation.prototype.animate = function animate(time) {
     this.startTime = this.startTime || time;
+    this.currentTime = time;
     time = (time - this.startTime) / this.duration;
     if (time < 1) {
       this.handler(this.ease(time));
@@ -96,6 +98,7 @@ var Animation = function () {
     this.oncomplete && this.oncomplete();
     for (var i = 0, next; i < this.next.length; i++) {
       next = this.next[i];
+      next.startTime = this.currentTime;
       next.start();
     }
   };
