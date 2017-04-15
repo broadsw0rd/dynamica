@@ -25,6 +25,16 @@ function indexOf(array, item) {
   return -1;
 }
 
+var startTime = Date.now();
+/* istanbul ignore next */
+function now() {
+  if (typeof window !== 'undefined' && window.performance != null) {
+    return window.performance.now();
+  } else {
+    return Date.now() - startTime;
+  }
+}
+
 var Animation = function () {
   Animation.add = function add(animation) {
     Animation.instances.push(animation);
@@ -61,7 +71,6 @@ var Animation = function () {
     }
 
     this.startTime = 0;
-    this.currentTime = 0;
 
     this.duration = Number(duration);
     this.handler = handler || noop;
@@ -76,35 +85,35 @@ var Animation = function () {
   }
 
   Animation.prototype.start = function start() {
+    var startTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : now();
+
     Animation.add(this);
     this._started = true;
+    this.startTime = startTime;
     this.onstart && this.onstart();
   };
 
   Animation.prototype.animate = function animate(time) {
-    this.startTime = this.startTime || time;
-    this.currentTime = time;
     time = (time - this.startTime) / this.duration;
     if (time < 1) {
       this.handler(this.ease(time));
     } else {
-      this.complete();
+      this.complete(time);
     }
   };
 
-  Animation.prototype.complete = function complete() {
+  Animation.prototype.complete = function complete(time) {
     this.remove();
     this.handler(1);
     this.oncomplete && this.oncomplete();
     for (var i = 0, next; i < this.next.length; i++) {
       next = this.next[i];
-      next.startTime = this.currentTime;
-      next.start();
+      next.start(this.startTime + this.duration);
+      next.animate(time);
     }
   };
 
   Animation.prototype.remove = function remove() {
-    this.startTime = 0;
     Animation.remove(this);
     this._started = false;
   };

@@ -13,6 +13,16 @@ function indexOf (array, item) {
   return -1
 }
 
+var startTime = Date.now()
+/* istanbul ignore next */
+function now () {
+  if (typeof window !== 'undefined' && window.performance != null) {
+    return window.performance.now()
+  } else {
+    return Date.now() - startTime
+  }
+}
+
 class Animation {
   static add (animation) {
     Animation.instances.push(animation)
@@ -48,7 +58,6 @@ class Animation {
     }
 
     this.startTime = 0
-    this.currentTime = 0
 
     this.duration = Number(duration)
     this.handler = handler || noop
@@ -62,36 +71,34 @@ class Animation {
     this._started = false
   }
 
-  start () {
+  start (startTime = now()) {
     Animation.add(this)
     this._started = true
+    this.startTime = startTime
     this.onstart && this.onstart()
   }
 
   animate (time) {
-    this.startTime = this.startTime || time
-    this.currentTime = time
     time = (time - this.startTime) / this.duration
     if (time < 1) {
       this.handler(this.ease(time))
     } else {
-      this.complete()
+      this.complete(time)
     }
   }
 
-  complete () {
+  complete (time) {
     this.remove()
     this.handler(1)
     this.oncomplete && this.oncomplete()
     for (var i = 0, next; i < this.next.length; i++) {
       next = this.next[i]
-      next.startTime = this.currentTime
-      next.start()
+      next.start(this.startTime + this.duration)
+      next.animate(time)
     }
   }
 
   remove () {
-    this.startTime = 0
     Animation.remove(this)
     this._started = false
   }
