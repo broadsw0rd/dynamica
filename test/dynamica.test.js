@@ -1,5 +1,10 @@
 var test = require('tape')
+var tapDiff = require('tap-diff')
 var sinon = require('sinon')
+
+test.createStream()
+  .pipe(tapDiff())
+  .pipe(process.stdout)
 
 var Animation = require('../dist/dynamica.js')
 
