@@ -1,5 +1,10 @@
 var test = require('tape')
+var tapDiff = require('tap-diff')
 var sinon = require('sinon')
+
+test.createStream()
+  .pipe(tapDiff())
+  .pipe(process.stdout)
 
 var Animation = require('../dist/dynamica.js')
 
@@ -172,20 +177,16 @@ test('`Animation#complete()` should immediately complete the animation', functio
   var animation = new Animation({
     duration: 1000
   })
-  var next = new Animation({
-    duration: 1000
-  })
-  animation.queue(next)
+
   var handler = sinon.spy(animation, 'handler')
   animation.complete()
 
   t.true(handler.getCall(0).calledWith(1))
-  t.true(next.started())
 
   t.end()
 })
 
-test('`Animation#complete()` should set startTime of next animations', function (t) {
+test('`Animation#complete()` should start next animations', function (t) {
   beforeEach()
 
   var animation = new Animation({
@@ -195,10 +196,15 @@ test('`Animation#complete()` should set startTime of next animations', function 
     duration: 1000
   })
   animation.queue(next)
-  animation.start()
-  animation.complete()
+  animation.start(Date.now())
 
-  t.is(next.startTime, animation.currentTime)
+  var handler = sinon.spy(next, 'handler')
+
+  animation.complete(animation.startTime + 1500)
+
+  t.is(next.startTime, animation.startTime + animation.duration)
+  t.true(next.started())
+  t.true(handler.getCall(0).calledWith(0.5))
 
   t.end()
 })
@@ -228,7 +234,8 @@ test('`Animation.animate()` should animate the animation', function (t) {
   var handler = sinon.spy(animation, 'handler')
   var ease = sinon.spy(animation, 'ease')
   var time = Date.now()
-  animation.start()
+
+  animation.start(time)
   Animation.animate(time)
 
   t.is(animation.startTime, time)

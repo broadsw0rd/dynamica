@@ -35,8 +35,8 @@
     "rollup": "0.41.6",
     "rollup-plugin-babel": "2.7.1",
     "sinon": "2.1.0",
-    "snazzy": "6.0.0",
-    "tap-prettify": "0.0.2",
+    "snazzy": "7.0.0",
+    "tap-diff": "0.1.1",
     "tape": "4.6.3",
     "uglify-js": "2.8.16"
   },
@@ -47,10 +47,9 @@
   },
   "scripts": {
     "check": "snazzy src/*.js test/*.js",
-    "test": "nyc --cache --reporter=html --reporter=lcov --reporter=text tap-prettify test/dynamica.test.js",
+    "test": "nyc --cache --reporter=html --reporter=lcov --reporter=text tape test/dynamica.test.js",
     "build": "rollup -c",
     "min": "uglifyjs -c -m -- dist/dynamica.js > dist/dynamica.min.js",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-  },
-  "dependencies": {}
+  }
 }
