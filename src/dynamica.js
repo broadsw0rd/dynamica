@@ -79,9 +79,9 @@ class Animation {
   }
 
   animate (time) {
-    time = (time - this.startTime) / this.duration
-    if (time < 1) {
-      this.handler(this.ease(time))
+    var t = (time - this.startTime) / this.duration
+    if (t < 1) {
+      this.handler(this.ease(t))
     } else {
       this.complete(time)
     }
