@@ -88,6 +88,8 @@ class Animation {
   }
 
   complete (time = now()) {
+    if (!this.started()) return
+
     this.remove()
     this.handler(1)
     this.oncomplete && this.oncomplete()

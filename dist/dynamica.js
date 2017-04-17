@@ -105,6 +105,8 @@ var Animation = function () {
   Animation.prototype.complete = function complete() {
     var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : now();
 
+    if (!this.started()) return;
+
     this.remove();
     this.handler(1);
     this.oncomplete && this.oncomplete();

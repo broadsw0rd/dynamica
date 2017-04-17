@@ -181,6 +181,9 @@ test('`Animation#complete()` should immediately complete the animation', functio
   var handler = sinon.spy(animation, 'handler')
   animation.complete()
 
+  animation.start()
+  animation.complete()
+
   t.true(handler.getCall(0).calledWith(1))
 
   t.end()
@@ -219,6 +222,7 @@ test('`Animation#complete()` should call oncomplete callback', function (t) {
 
   var oncomplete = sinon.spy(animation, 'oncomplete')
 
+  animation.start()
   animation.complete()
   t.is(oncomplete.callCount, 1)
 
