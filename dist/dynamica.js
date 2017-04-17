@@ -102,13 +102,15 @@ var Animation = function () {
     }
   };
 
-  Animation.prototype.complete = function complete(time) {
+  Animation.prototype.complete = function complete() {
+    var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : now();
+
     this.remove();
     this.handler(1);
     this.oncomplete && this.oncomplete();
     for (var i = 0, next; i < this.next.length; i++) {
       next = this.next[i];
-      next.start(this.startTime + this.duration);
+      next.start(Math.min(this.startTime + this.duration, time));
       next.animate(time);
     }
   };

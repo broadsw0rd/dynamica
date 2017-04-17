@@ -87,13 +87,13 @@ class Animation {
     }
   }
 
-  complete (time) {
+  complete (time = now()) {
     this.remove()
     this.handler(1)
     this.oncomplete && this.oncomplete()
     for (var i = 0, next; i < this.next.length; i++) {
       next = this.next[i]
-      next.start(this.startTime + this.duration)
+      next.start(Math.min(this.startTime + this.duration, time))
       next.animate(time)
     }
   }
