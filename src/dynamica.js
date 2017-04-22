@@ -1,3 +1,5 @@
+import now from 'performance-now'
+
 function noop () {}
 
 function id (value) {
@@ -11,16 +13,6 @@ function indexOf (array, item) {
     }
   }
   return -1
-}
-
-var startTime = Date.now()
-/* istanbul ignore next */
-function now () {
-  if (typeof window !== 'undefined' && window.performance != null) {
-    return window.performance.now()
-  } else {
-    return Date.now() - startTime
-  }
 }
 
 class Animation {
@@ -106,6 +98,8 @@ class Animation {
   }
 
   cancel () {
+    if (!this.started()) return
+
     this.remove()
     this.oncancel && this.oncancel()
   }

@@ -111,6 +111,9 @@ test('`Animation#cancel()` should call oncancel callback', function (t) {
   var oncancel = sinon.spy(animation, 'oncancel')
 
   animation.cancel()
+
+  animation.start()
+  animation.cancel()
   t.is(oncancel.callCount, 1)
 
   t.end()

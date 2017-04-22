@@ -29,8 +29,8 @@
 
 ## Features
 
-- Simple - [146 LOC](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.js#L138)
-- Lightweight - [1.9 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
+- Simple - [191 LOC](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.js#L191)
+- Lightweight - [2.5 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
 - Well tested - [100% code coverage](https://coveralls.io/github/broadsw0rd/dynamica?branch=master)
 - Built for any environment - HTML, CSS, Canvas, React, etc...
 - Designed with performance in mind and reviewed with [IRHydra](http://mrale.ph/irhydra/2/)

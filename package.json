@@ -28,12 +28,18 @@
     "dist"
   ],
   "main": "dist/dynamica.js",
+  "dependencies": {
+    "performance-now": "2.1.0"
+  },
   "devDependencies": {
     "babel-preset-es2015-loose-rollup": "7.0.0",
     "coveralls": "2.12.0",
     "nyc": "10.1.2",
     "rollup": "0.41.6",
     "rollup-plugin-babel": "2.7.1",
+    "rollup-plugin-commonjs": "8.0.2",
+    "rollup-plugin-node-resolve": "3.0.0",
+    "rollup-plugin-replace": "1.1.1",
     "sinon": "2.1.0",
     "snazzy": "7.0.0",
     "tap-diff": "0.1.1",
