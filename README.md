@@ -20,6 +20,7 @@
 
 ## Table of Contents
 
+- [Intro](#intro)
 - [Features](#features)
 - [Install](#install)
 - [Usage](#usage)
@@ -27,13 +28,17 @@
 - [API](#api)
 - [Development](#development)
 
+## Intro
+
+Dynamica is a low-level animation engine library, which provides smooth and exact work of any amount of serial or parallel animations with a simple and flexible API
+
 ## Features
 
 - Simple - [191 LOC](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.js#L191)
 - Lightweight - [2.5 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
 - Well tested - [100% code coverage](https://coveralls.io/github/broadsw0rd/dynamica?branch=master)
 - Built for any environment - HTML, CSS, Canvas, React, etc...
-- Designed with performance in mind and reviewed with [IRHydra](http://mrale.ph/irhydra/2/)
+- Designed with performance in mind and tested with [IRHydra](http://mrale.ph/irhydra/2/)
 
 ## Install
 
@@ -44,7 +49,7 @@ npm install --save dynamica
 
 or
 
-Download [dev](https://rawgit.com/broadsw0rd/dynamica/1.0.1/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/1.0.1/dist/dynamica.min.js) version and put it in your html
+Download [dev](https://rawgit.com/broadsw0rd/dynamica/1.1.0/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/1.1.0/dist/dynamica.min.js) version and put it in your html
 
 ```html
 <script src="vendor/dynamica.min.js"></script>
@@ -88,7 +93,7 @@ animation.start()
 
 #### `Animation.animate(time)`
 
-Animate all started animations by single call. This guarantees full animation synchronization. In other words two different animations with same duration and start time will be completed in same time. Recommended to use [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) or [raf](https://www.npmjs.com/package/raf)
+Execution of all animations by a single call. It guarantees full animations' synchronization. In other words, two (or endlessly more) different animations with the same duration and start time will be completed at the same time. Recommended to use [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) or [raf](https://www.npmjs.com/package/raf).
 
 ```js
 requestAnimationFrame(function loop (t) {
@@ -103,7 +108,7 @@ requestAnimationFrame(function loop (t) {
 
 Name | Description | Default | Required
 ---- | ----------- | ------- | --------
-`duration` | Animation duration. If not passed error will thrown | | +
+`duration` | Animation duration. If not passed, error will thrown | | +
 `handler` | Animation implementation | `(t) => {}` | 
 `easing` | Animation easing. Check [Custom easing](http://codepen.io/broadsw0rd/pen/LZxJjQ) example | `(t) => t` | 
 `onstart` | Called by [`Animation#start()`](#animationstart) | `() => {}` |
@@ -112,33 +117,33 @@ Name | Description | Default | Required
 
 #### `Animation#start()`
 
-Start the animation. First tick will be on the next animation frame. Call `onstart` callback
+Start an animation. First tick will be executed on the next animation frame. This method calls `onstart` callback
 
 #### `Animation#complete()`
 
-Immediately complete the animation and starts next animations in the queue. This means that `handler` callback will be called with `t = 1`. Next animations will start on the next animation frame. Call `oncomplete` callback
+Immediately completes the animation and starts next animations from the queue. It means that `handler` callback will be called with `t = 1`. This method calls `oncomplete` callback
 
 #### `Animation#cancel()`
 
-Immediately cancel animation. Animations in the queue **will not be started**. Call `oncancel` callback
+Immediately cancels the animation. Animations in the queue **will not be started**. This method calls `oncancel` callback
 
 #### `Animation#queue(animation)`
 
-Puts animation to the queue. If you put several animation to the queue, all these animation will start in same time after source animation completion. [Animation queue](http://codepen.io/broadsw0rd/pen/ezgLGB) example
+Puts animation to the queue. If you put several animations to the queue, all these animations will start at same time with source animation completion. [Animation queue](http://codepen.io/broadsw0rd/pen/ezgLGB) example
 
 #### `Animation#dequeue(animation)`
 
-Remove passed animation from the queue. So you have full control over animations queues
+Removes passed animations from the queue. Provides full control over animations queues
 
 #### `Animation#started()`
 
-Indicates that animation has started or not
+Indicates if the animation has been started or not
 
 ## Development
 
 Command | Description
 ------- | -----------
 `npm run check` | Check standard code style by [snazzy](https://www.npmjs.com/package/snazzy)
-`npm run test` | Run tests by [ava](https://github.com/sindresorhus/ava) and compute code coverage by [nyc](https://github.com/bcoe/nyc)
+`npm run test` | Run tests by [tape](https://github.com/substack/tape) and compute code coverage by [nyc](https://github.com/bcoe/nyc)
 `npm run build` | Wrap source code in [UMD](https://github.com/umdjs/umd) by [rollup](http://rollupjs.org/)
 `npm run min` | Minify code by [UglifyJS](https://github.com/mishoo/UglifyJS)
