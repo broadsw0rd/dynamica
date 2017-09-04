@@ -6,7 +6,7 @@ test.createStream()
   .pipe(tapDiff())
   .pipe(process.stdout)
 
-var Animation = require('../dist/dynamica.js')
+var Animation = require('../dist/dynamica.umd.js')
 
 function beforeEach () {
   Animation.instances = []

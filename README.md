@@ -34,11 +34,11 @@ Dynamica is a low-level animation engine library, which provides smooth and exac
 
 ## Features
 
+- Designed with performance in mind
 - Simple - [191 LOC](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.js#L191)
 - Lightweight - [2.5 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
 - Well tested - [100% code coverage](https://coveralls.io/github/broadsw0rd/dynamica?branch=master)
 - Built for any environment - HTML, CSS, Canvas, React, etc...
-- Designed with performance in mind and tested with [IRHydra](http://mrale.ph/irhydra/2/)
 
 ## Install
 
@@ -49,7 +49,7 @@ npm install --save dynamica
 
 or
 
-Download [dev](https://rawgit.com/broadsw0rd/dynamica/1.1.0/dist/dynamica.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/1.1.0/dist/dynamica.min.js) version and put it in your html
+Download [dev](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.umd.js) or [prod](https://rawgit.com/broadsw0rd/dynamica/master/dist/dynamica.min.js) version and put it in your html
 
 ```html
 <script src="vendor/dynamica.min.js"></script>
