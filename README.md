@@ -35,7 +35,7 @@ Dynamica is a low-level animation engine library, which provides smooth and exac
 ## Features
 
 - Designed with performance in mind
-- Simple - [191 LOC](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.js#L191)
+- Simple - [175 LOC](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.js#L175)
 - Lightweight - [2.5 KB](https://github.com/broadsw0rd/dynamica/blob/master/dist/dynamica.min.js)
 - Well tested - [100% code coverage](https://coveralls.io/github/broadsw0rd/dynamica?branch=master)
 - Built for any environment - HTML, CSS, Canvas, React, etc...
