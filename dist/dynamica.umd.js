@@ -1,3 +1,9 @@
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.Animation = factory());
+}(this, (function () { 'use strict';
+
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 
@@ -172,4 +178,6 @@ Animation.prototype.started = function started () {
 
 Animation.instances = [];
 
-export default Animation;
+return Animation;
+
+})));
