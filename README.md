@@ -10,9 +10,6 @@
   <a href='https://coveralls.io/github/broadsw0rd/dynamica?branch=master'>
     <img src='https://coveralls.io/repos/github/broadsw0rd/dynamica/badge.svg?branch=master' alt='Coverage Status' />
   </a>
-  <a href="https://www.bithound.io/github/broadsw0rd/dynamica">
-    <img src="https://www.bithound.io/github/broadsw0rd/dynamica/badges/score.svg" alt="bitHound Overall Score">
-  </a>
   <a href="https://github.com/feross/standard" target="_blank">
     <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat" alt="js-standard-style"></img>
   </a>

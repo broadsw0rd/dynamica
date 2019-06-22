@@ -18,6 +18,7 @@ export default {
     nodeResolve(),
     commonjs(),
     replace({
+      delimiters: ['', ''],
       [target]: replacement
     })
   ]
